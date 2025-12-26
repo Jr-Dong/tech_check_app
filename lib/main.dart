@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_check_app/pages/product_register/product_register_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ProductRegister();
   }
 }
