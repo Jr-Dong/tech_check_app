@@ -13,29 +13,51 @@ class ProductRegister extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            OutlinedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                foregroundColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.disabled)) {
-                    return AppColors.border;
-                  }
-                  return AppColors.gray400;
-                }),
-                side: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.disabled)) {
-                    return BorderSide(color: AppColors.border);
-                  }
-                  return BorderSide(color: AppColors.border);
-                }),
-              ),
-              child: Column(
-                children: [Icon(Icons.camera_alt, size: 32), Text("사진")],
-              ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(),
+                        child: Column(
+                          children: [
+                            Icon(Icons.camera_alt, size: 32),
+                            Text("0/10"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: SizedBox(
+                            width: 80,
+                            height: 80,
+                            child: Image.network('http://picsum.photos/80'),
+                          ),
+                        ),
+                        Icon(Icons.cancel),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [Text("제목"), TextField()],
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Text("제목", style: AppTextStyles.s16w400),
+                ),
+                TextField(),
+              ],
             ),
           ],
         ),
