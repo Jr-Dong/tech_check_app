@@ -42,7 +42,27 @@ class ProductRegister extends StatelessWidget {
                             child: Image.network('http://picsum.photos/80'),
                           ),
                         ),
-                        Icon(Icons.cancel),
+                        Positioned(top: 0, right: 0, child: Icon(Icons.cancel)),
+                        Positioned(
+                          bottom: 4,
+                          left: 4,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 4,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.secondary500,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              "대표",
+                              style: AppTextStyles.s11w500.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -54,9 +74,40 @@ class ProductRegister extends StatelessWidget {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  child: Text("제목", style: AppTextStyles.s16w400),
+                  child: Text(
+                    "제목",
+                    style: AppTextStyles.s16w400.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
                 ),
-                TextField(),
+                TextField(decoration: InputDecoration(hint: Text("제목을 입력하세요"))),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    "가격",
+                    style: AppTextStyles.s16w400.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ),
+                TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    suffixText: '원',
+                    suffixStyle: AppTextStyles.s16w400.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
