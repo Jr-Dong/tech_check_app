@@ -26,8 +26,6 @@ class AppTheme {
       onSurface: AppColors.textPrimary,
     ),
 
-    scaffoldBackgroundColor: AppColors.background,
-
     // =========================
     // 🔤 Text Theme
     // =========================
