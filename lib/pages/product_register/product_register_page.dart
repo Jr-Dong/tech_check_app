@@ -1,116 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/pages/product_register/widgets/form_field_section.dart';
+import 'package:tech_check_app/pages/product_register/widgets/price_form_field_section.dart';
+import 'package:tech_check_app/pages/product_register/widgets/product_image_picker_section.dart';
 
 class ProductRegister extends StatelessWidget {
   const ProductRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("내 물건 팔기")),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(),
-                        child: Column(
-                          children: [
-                            Icon(Icons.camera_alt, size: 32),
-                            Text("0/10"),
-                          ],
-                        ),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(title: Text("내 물건 팔기")),
+        resizeToAvoidBottomInset: false,
+        bottomNavigationBar: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("등록하기"),
+              ),
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              ProductImagePickerSection(),
+              SizedBox(height: 18),
+              FormFieldSection(label: "제목", hint: "상품명을 입력해주세요"),
+              SizedBox(height: 18),
+              PriceFormFieldSection(label: "가격", hint: "가격을 입력하세요"),
+              SizedBox(height: 18),
+              Column(
+                children: [
+                  FormFieldSection(
+                    label: "자세한 설명",
+                    hint:
+                        "- 브랜드, 모델명, 구매 시기, 사용 기간, 하자 유무를 작성해주세요\n\n"
+                        "- 정확한 정보일수록 빠른 거래에 도움이 됩니다",
+                    minLines: 5,
+                  ),
+                  SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      "* 판매 금지 품목은 게시가 제한될 수 있어요.",
+                      style: AppTextStyles.s11w500.copyWith(
+                        color: AppColors.gray400,
                       ),
                     ),
-                    SizedBox(width: 12),
-                    Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 80,
-                            height: 80,
-                            child: Image.network('http://picsum.photos/80'),
-                          ),
-                        ),
-                        Positioned(top: 0, right: 0, child: Icon(Icons.cancel)),
-                        Positioned(
-                          bottom: 4,
-                          left: 4,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 4,
-                              vertical: 2,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.secondary500,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Text(
-                              "대표",
-                              style: AppTextStyles.s11w500.copyWith(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    "제목",
-                    style: AppTextStyles.s16w400.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.textSecondary,
-                    ),
                   ),
-                ),
-                TextField(decoration: InputDecoration(hint: Text("제목을 입력하세요"))),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    "가격",
-                    style: AppTextStyles.s16w400.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    suffixText: '원',
-                    suffixStyle: AppTextStyles.s16w400.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
