@@ -88,11 +88,13 @@ class AppTheme {
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         side: const BorderSide(color: AppColors.primary500),
+        textStyle: AppTextStyles.s16w400,
         padding: const EdgeInsets.symmetric(vertical: 14),
         backgroundColor: AppColors.white,
         disabledBackgroundColor: AppColors.white,
         disabledForegroundColor: AppColors.gray400,
         disabledIconColor: AppColors.gray400,
+        minimumSize: const Size.fromHeight(52),
       ),
     ),
 
@@ -142,6 +144,7 @@ class AppTheme {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.secondary500,
       foregroundColor: AppColors.white,
+      iconSize: 40,
       shape: const CircleBorder(), // 동그라미
     ),
   );
