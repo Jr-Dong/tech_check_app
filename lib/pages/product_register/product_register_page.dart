@@ -5,6 +5,7 @@ import 'package:tech_check_app/pages/product_register/widgets/form_field_section
 import 'package:tech_check_app/pages/product_register/widgets/price_form_field_section.dart';
 import 'package:tech_check_app/pages/product_register/widgets/product_image_picker_section.dart';
 
+// 상품 등록 페이지
 class ProductRegister extends StatefulWidget {
   const ProductRegister({super.key});
 
@@ -13,15 +14,23 @@ class ProductRegister extends StatefulWidget {
 }
 
 class _ProductRegisterState extends State<ProductRegister> {
+  // Form의 전체 상태(검증)을 관리하기 위한 키
   final _formKey = GlobalKey<FormState>();
 
+  // 각 TextformField의 컨트롤러
   final TextEditingController titleController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
+  // 등록 버튼 클릭시 실행되는 함수
+  // 모든 FormField의 유효성 검사를 수행하고,
+  // 유효성 검사를 통과하면 이전 화면으로 돌아가고 스낵바를 표시
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      // 현재 페이지 닫기
       Navigator.pop(context);
+
+      // snackbar 띄우기
       SnackBar snackBar = SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text("상품이 성공적으로 등록되었습니다!"),
@@ -32,6 +41,7 @@ class _ProductRegisterState extends State<ProductRegister> {
 
   @override
   void dispose() {
+    // 컨트롤러 해제
     titleController.dispose();
     priceController.dispose();
     descriptionController.dispose();
@@ -41,11 +51,14 @@ class _ProductRegisterState extends State<ProductRegister> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // 빈 공간 터치시 키보드 닫기
       behavior: HitTestBehavior.translucent,
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(title: Text("내 물건 팔기")),
         resizeToAvoidBottomInset: false,
+
+        // 하단 고정 등록하기 버튼
         bottomNavigationBar: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -60,15 +73,19 @@ class _ProductRegisterState extends State<ProductRegister> {
             ),
           ),
         ),
+
+        // 입력 폼 영역
         body: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
+                // 상품 이미지 영역
                 ProductImagePickerSection(),
                 SizedBox(height: 18),
+
+                // 상품 제목 입력
                 FormFieldSection(
                   controller: titleController,
                   label: "제목",
@@ -82,6 +99,8 @@ class _ProductRegisterState extends State<ProductRegister> {
                   },
                 ),
                 SizedBox(height: 18),
+
+                // 상품 가격 입력
                 PriceFormFieldSection(
                   controller: priceController,
                   label: "가격",
@@ -92,6 +111,8 @@ class _ProductRegisterState extends State<ProductRegister> {
                   },
                 ),
                 SizedBox(height: 18),
+
+                // 상세 설명 입력
                 Column(
                   children: [
                     FormFieldSection(
