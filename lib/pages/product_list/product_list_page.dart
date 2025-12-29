@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tech_check_app/core/app_colors.dart';
-import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/common_app_bar.dart';
 import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_list/widgets/empty_list_item.dart';

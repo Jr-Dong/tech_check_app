@@ -8,7 +8,7 @@ class ShoppingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartItems = [2];
+    final cartItems = [];
     final isEmpty = cartItems.isEmpty;
 
     return Scaffold(
@@ -33,7 +33,7 @@ class ShoppingPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text("등록하기"),
+                    child: const Text("구매하기"),
                   ),
                 ),
               ),
