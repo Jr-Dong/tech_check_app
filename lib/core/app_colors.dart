@@ -11,7 +11,7 @@ class AppColors {
   // Secondary-color (새로운 요청 값 적용)
   static const secondary600 = Color(0xFF41B95B);
   static const secondary500 = Color(0xFF2ECC71);
-  static const secondary400 = Color(0xFF5C94F4);
+  static const secondary400 = Color(0xFF7DDB93);
   static const secondary300 = Color(0xFFCBE9B5);
   static const secondary100 = Color(0xFFF5FEF1);
 
