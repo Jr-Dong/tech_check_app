@@ -3,6 +3,7 @@ import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
 class FormFieldSection extends StatelessWidget {
+  final TextEditingController? controller;
   final String label;
   final String hint;
   final TextInputType? keyboardType;
@@ -10,6 +11,7 @@ class FormFieldSection extends StatelessWidget {
 
   const FormFieldSection({
     super.key,
+    this.controller,
     required this.label,
     required this.hint,
     this.keyboardType,
@@ -30,6 +32,7 @@ class FormFieldSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         TextField(
+          controller: controller,
           keyboardType: keyboardType,
           minLines: minLines,
           maxLines: minLines == 1 ? 1 : null,

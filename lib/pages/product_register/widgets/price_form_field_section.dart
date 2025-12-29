@@ -1,12 +1,16 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
 class PriceFormFieldSection extends StatelessWidget {
+  final TextEditingController? controller;
   final String label;
   final String hint;
+
   const PriceFormFieldSection({
     super.key,
+    this.controller,
     required this.label,
     required this.hint,
   });
@@ -28,6 +32,7 @@ class PriceFormFieldSection extends StatelessWidget {
           alignment: Alignment.centerRight,
           children: [
             TextField(
+              controller: controller,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(right: 30, left: 16),
@@ -38,6 +43,14 @@ class PriceFormFieldSection extends StatelessWidget {
                   ),
                 ),
               ),
+              inputFormatters: [
+                // 1000 단위 콤마 찍기
+                CurrencyTextInputFormatter.currency(
+                  locale: 'ko',
+                  symbol: '',
+                  decimalDigits: 0,
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(right: 12),
