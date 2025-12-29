@@ -22,4 +22,6 @@ class AppColors {
   static const border = Color(0xFFE5E7EB); // Border
   static const background = Color(0xFFF7F8FB); // Background
   static const white = Color(0xFFFFFFFF); // White
+
+  static const heartPink = Color(0xFFFF7474);
 }
