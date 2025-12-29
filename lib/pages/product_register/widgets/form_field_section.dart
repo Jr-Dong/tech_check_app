@@ -6,16 +6,20 @@ class FormFieldSection extends StatelessWidget {
   final TextEditingController? controller;
   final String label;
   final String hint;
+  final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final int minLines;
+  final int maxLines;
 
   const FormFieldSection({
     super.key,
     this.controller,
     required this.label,
     required this.hint,
+    this.validator,
     this.keyboardType,
     this.minLines = 1,
+    this.maxLines = 1,
   });
 
   @override
@@ -31,15 +35,16 @@ class FormFieldSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
+        TextFormField(
           controller: controller,
           keyboardType: keyboardType,
           minLines: minLines,
-          maxLines: minLines == 1 ? 1 : null,
+          maxLines: maxLines,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: AppTextStyles.s12w400.copyWith(color: AppColors.gray400),
           ),
+          validator: validator,
         ),
       ],
     );

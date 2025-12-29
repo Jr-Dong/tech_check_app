@@ -7,12 +7,14 @@ class PriceFormFieldSection extends StatelessWidget {
   final TextEditingController? controller;
   final String label;
   final String hint;
+  final String? Function(String?)? validator;
 
   const PriceFormFieldSection({
     super.key,
     this.controller,
     required this.label,
     required this.hint,
+    this.validator,
   });
 
   @override
@@ -28,41 +30,35 @@ class PriceFormFieldSection extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8),
-        Stack(
-          alignment: Alignment.centerRight,
-          children: [
-            TextField(
-              controller: controller,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(right: 30, left: 16),
-                hint: Text(
-                  hint,
-                  style: AppTextStyles.s12w400.copyWith(
-                    color: AppColors.gray400,
-                  ),
-                ),
-              ),
-              inputFormatters: [
-                // 1000 단위 콤마 찍기
-                CurrencyTextInputFormatter.currency(
-                  locale: 'ko',
-                  symbol: '',
-                  decimalDigits: 0,
-                ),
-              ],
+        TextFormField(
+          controller: controller,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            hint: Text(
+              hint,
+              style: AppTextStyles.s12w400.copyWith(color: AppColors.gray400),
             ),
-            Padding(
+            suffixIcon: Padding(
               padding: const EdgeInsets.only(right: 12),
               child: Text(
-                '원',
+                "원",
                 style: AppTextStyles.s16w400.copyWith(
                   fontWeight: FontWeight.w600,
                   color: AppColors.textSecondary,
                 ),
               ),
             ),
+            suffixIconConstraints: BoxConstraints(),
+          ),
+          inputFormatters: [
+            // 1000 단위 콤마 찍기
+            CurrencyTextInputFormatter.currency(
+              locale: 'ko',
+              symbol: '',
+              decimalDigits: 0,
+            ),
           ],
+          validator: validator,
         ),
       ],
     );

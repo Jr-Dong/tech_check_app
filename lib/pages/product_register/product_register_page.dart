@@ -13,32 +13,20 @@ class ProductRegister extends StatefulWidget {
 }
 
 class _ProductRegisterState extends State<ProductRegister> {
+  final _formKey = GlobalKey<FormState>();
+
   final TextEditingController titleController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  bool isButtonEnabled = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // 값이 바뀔 때마다 버튼 활성화 체크
-    titleController.addListener(_checkForm);
-    priceController.addListener(_checkForm);
-    descriptionController.addListener(_checkForm);
-  }
-
-  void _checkForm() {
-    final isFilled =
-        titleController.text.isNotEmpty &&
-        priceController.text.isNotEmpty &&
-        descriptionController.text.isNotEmpty;
-
-    if (isButtonEnabled != isFilled) {
-      setState(() {
-        isButtonEnabled = isFilled;
-      });
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.pop(context);
+      SnackBar snackBar = SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text("상품이 성공적으로 등록되었습니다!"),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
@@ -64,11 +52,9 @@ class _ProductRegisterState extends State<ProductRegister> {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: isButtonEnabled
-                    ? () {
-                        // 등록 처리
-                      }
-                    : null, // null이면 비활성화
+                onPressed: () {
+                  _submitForm();
+                },
                 child: const Text("등록하기"),
               ),
             ),
@@ -77,45 +63,69 @@ class _ProductRegisterState extends State<ProductRegister> {
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              ProductImagePickerSection(),
-              SizedBox(height: 18),
-              FormFieldSection(
-                controller: titleController,
-                label: "제목",
-                hint: "상품명을 입력해주세요",
-              ),
-              SizedBox(height: 18),
-              PriceFormFieldSection(
-                controller: priceController,
-                label: "가격",
-                hint: "가격을 입력하세요",
-              ),
-              SizedBox(height: 18),
-              Column(
-                children: [
-                  FormFieldSection(
-                    controller: descriptionController,
-                    label: "자세한 설명",
-                    hint:
-                        "- 브랜드, 모델명, 구매 시기, 사용 기간, 하자 유무를 작성해주세요\n\n"
-                        "- 정확한 정보일수록 빠른 거래에 도움이 됩니다",
-                    minLines: 5,
-                  ),
-                  SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      "* 판매 금지 품목은 게시가 제한될 수 있어요.",
-                      style: AppTextStyles.s11w500.copyWith(
-                        color: AppColors.gray400,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                ProductImagePickerSection(),
+                SizedBox(height: 18),
+                FormFieldSection(
+                  controller: titleController,
+                  label: "제목",
+                  hint: "상품명을 입력해주세요",
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "상품명을 입력해주세요";
+                    }
+                    if (value.length < 2) return "상품명은 최소 2자 이상이어야 합니다";
+                    return null;
+                  },
+                ),
+                SizedBox(height: 18),
+                PriceFormFieldSection(
+                  controller: priceController,
+                  label: "가격",
+                  hint: "가격을 입력하세요",
+                  validator: (value) {
+                    if (value == null || value.isEmpty) return "가격을 입력해주세요";
+                    return null;
+                  },
+                ),
+                SizedBox(height: 18),
+                Column(
+                  children: [
+                    FormFieldSection(
+                      controller: descriptionController,
+                      label: "자세한 설명",
+                      hint:
+                          "- 브랜드, 모델명, 구매 시기, 사용 기간, 하자 유무를 작성해주세요\n\n"
+                          "- 정확한 정보일수록 빠른 거래에 도움이 됩니다",
+                      minLines: 4,
+                      maxLines: 7,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return "설명을 입력해주세요";
+                        }
+                        if (value.length < 10) {
+                          return "설명은 최소 10자 이상이어야 합니다";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        "* 판매 금지 품목은 게시가 제한될 수 있어요.",
+                        style: AppTextStyles.s11w500.copyWith(
+                          color: AppColors.gray400,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
