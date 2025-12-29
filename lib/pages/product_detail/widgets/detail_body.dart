@@ -9,6 +9,7 @@ class DetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      //TODO 이미지 여기다 추가해야함
       child: ListView(
         padding: EdgeInsets.all(12).copyWith(bottom: 172),
         children: [
