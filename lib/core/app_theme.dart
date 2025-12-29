@@ -89,6 +89,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         side: const BorderSide(color: AppColors.primary500),
         padding: const EdgeInsets.symmetric(vertical: 14),
+        backgroundColor: AppColors.white,
         disabledBackgroundColor: AppColors.white,
         disabledForegroundColor: AppColors.gray400,
         disabledIconColor: AppColors.gray400,
