@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
 class ProductListItem extends StatefulWidget {
@@ -28,7 +29,7 @@ class _ProductListItemState extends State<ProductListItem> {
             children: [
               // 이미지
               ClipRRect(
-                borderRadius: BorderRadiusGeometry.all(Radius.circular(8)),
+                borderRadius: BorderRadiusGeometry.all(Radius.circular(5)),
                 child: Stack(
                   children: [
                     Image.network(
@@ -48,7 +49,7 @@ class _ProductListItemState extends State<ProductListItem> {
                         icon: Icon(
                           isFavorite ? Icons.favorite : Icons.favorite_outline,
                           color: isFavorite
-                              ? Colors.pinkAccent.shade100
+                              ? AppColors.heartPink
                               : Colors.white,
                         ),
                       ),
