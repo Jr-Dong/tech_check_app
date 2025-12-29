@@ -43,7 +43,7 @@ class ShoppingEmptyView extends StatelessWidget {
                 // TODO: 상품 페이지로 이동
               },
               style: TextButton.styleFrom(
-                backgroundColor: AppColors.primary300,
+                backgroundColor: AppColors.primary400,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
                   vertical: 8,
