@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/pages/product_register/product_register_page.dart';
 
 class DesignSystemPreviewPage extends StatelessWidget {
   const DesignSystemPreviewPage({super.key});
@@ -16,7 +17,16 @@ class DesignSystemPreviewPage extends StatelessWidget {
           /// Secondary FAB
           FloatingActionButton(
             heroTag: 'fab-secondary',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProductRegister();
+                  },
+                ),
+              );
+            },
             child: const Icon(Icons.edit),
           ),
         ],
