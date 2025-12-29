@@ -35,6 +35,13 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
+  /// 기본 본문, 주요 설명 (Size: 16, Weight: 400)
+  static const s16w600 = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
   /// 보조 설명 (Size: 12, Weight: 400)
   static const s12w400 = TextStyle(
     fontFamily: fontFamily,
