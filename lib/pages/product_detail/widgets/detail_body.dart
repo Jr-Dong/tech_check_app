@@ -10,7 +10,7 @@ class DetailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(12).copyWith(bottom: 172),
         children: [
           Row(
             children: [
@@ -20,6 +20,7 @@ class DetailBody extends StatelessWidget {
                   color: AppColors.textPrimary,
                 ),
               ),
+              SizedBox(width: 8),
               Icon(
                 CupertinoIcons.checkmark_seal_fill,
                 color: AppColors.secondary500,
@@ -42,14 +43,15 @@ class DetailBody extends StatelessWidget {
               color: AppColors.textSecondary,
             ),
           ),
-          SizedBox(height: 11),
+          SizedBox(height: 12),
           Text(
-            '가나다라마바사',
+            '가나다라마 \n바사아',
             style: AppTextStyles.s16w400.copyWith(
               color: AppColors.textPrimary,
               //
             ),
           ),
+          SizedBox(height: 12),
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(9),
