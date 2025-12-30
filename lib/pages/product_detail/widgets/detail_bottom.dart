@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/core/widgets/counter_control.dart';
 
 class DetailBottom extends StatelessWidget {
   const DetailBottom({super.key});
@@ -28,11 +28,7 @@ class DetailBottom extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(CupertinoIcons.minus_circle, color: AppColors.gray400),
-                SizedBox(width: 19),
-                Text("1"),
-                SizedBox(width: 19),
-                Icon(CupertinoIcons.plus_circle, color: AppColors.gray400),
+                CounterControl(count: 2),
                 Spacer(),
                 Text(
                   "총 380,000 원",

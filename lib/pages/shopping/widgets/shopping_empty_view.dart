@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/pages/product_list/product_list_page.dart';
 
 class ShoppingEmptyView extends StatelessWidget {
   const ShoppingEmptyView({super.key});
@@ -39,8 +40,14 @@ class ShoppingEmptyView extends StatelessWidget {
             ),
             SizedBox(height: 21),
             TextButton(
+              // TODO: 왜 상품 리스트로 이동하고 뒤로가기 버튼이 생길까?
               onPressed: () {
-                // TODO: 상품 페이지로 이동
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProductListPage(),
+                  ),
+                );
               },
               style: TextButton.styleFrom(
                 backgroundColor: AppColors.primary400,

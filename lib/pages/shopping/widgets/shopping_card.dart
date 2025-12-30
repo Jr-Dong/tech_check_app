@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/core/widgets/counter_control.dart';
 
 class ShoppingCard extends StatelessWidget {
   final String productName;
@@ -56,7 +57,7 @@ class ShoppingCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.plus_one),
+                          CounterControl(count: 2),
                           Spacer(),
                           Text('$productPrice원', style: AppTextStyles.s18w600),
                         ],

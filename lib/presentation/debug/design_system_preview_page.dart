@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
-import 'package:tech_check_app/pages/shopping/shopping_page.dart';
 import 'package:tech_check_app/pages/product_register/product_register_page.dart';
 
 class DesignSystemPreviewPage extends StatelessWidget {
