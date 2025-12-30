@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
 class ProductListItem extends StatefulWidget {
   const ProductListItem({super.key});
+  // final ProductEntity item;
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
