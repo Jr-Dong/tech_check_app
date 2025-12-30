@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/widgets/bottom_button.dart';
-import 'package:tech_check_app/model/product_entity.dart';
+import 'package:tech_check_app/core/widgets/common_empty_view.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/pages/shopping/widgets/shopping_card_list.dart';
-import 'package:tech_check_app/pages/shopping/widgets/shopping_empty_view.dart';
 
 class ShoppingPage extends StatelessWidget {
-  final Map<ProductEntity, int> shoppingCart;
+  final List<CartItem> shoppingCart;
   const ShoppingPage({super.key, required this.shoppingCart});
 
   @override
@@ -15,9 +15,16 @@ class ShoppingPage extends StatelessWidget {
       bottomNavigationBar: shoppingCart.isEmpty
           ? null
           : BottomButton(text: "구매하기", onPressed: null, hasShadow: true),
-      body: shoppingCart.isEmpty
-          ? ShoppingEmptyView()
-          : ShoppingCardList(shoppingCart: shoppingCart),
+      body:
+          // shoppingCart.isEmpty
+          //     ? CommonEmptyListItem(
+          //         title: "장바구니가 비어있어요",
+          //         description: "원하는 상품을 담아 보세요!",
+          //         icon: Icons.shopping_bag_outlined,
+          //         visualSize: 160,
+          //       )
+          //     :
+          ShoppingCardList(shoppingCart: shoppingCart),
     );
   }
 }

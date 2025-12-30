@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_wishlist/product_wishlist_page.dart';
 import 'package:tech_check_app/pages/shopping/shopping_page.dart';
@@ -9,7 +10,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool centerTitle;
   final bool isWish;
-  final Map<ProductEntity, int> shoppingCart;
+  final List<CartItem> shoppingCart;
+  final Set<ProductEntity> wishSet;
+  final void Function(ProductEntity) onToggleWish;
 
   const CommonAppBar({
     super.key,
@@ -17,6 +20,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = false,
     this.isWish = true,
     required this.shoppingCart,
+    required this.wishSet,
+    required this.onToggleWish,
   });
 
   @override
@@ -31,8 +36,11 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ProductWishlistPage(shoppingCart: shoppingCart),
+                  builder: (context) => ProductWishlistPage(
+                    shoppingCart: shoppingCart,
+                    wishSet: wishSet,
+                    onToggleWish: onToggleWish,
+                  ),
                 ),
               );
             },

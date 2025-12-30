@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 
 class ShoppingCard extends StatelessWidget {
-  final String productName;
-  final int productPrice;
+  final CartItem cartItem;
 
-  const ShoppingCard({
-    super.key,
-    required this.productName,
-    required this.productPrice,
-  });
+  const ShoppingCard({super.key, required this.cartItem});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,13 @@ class ShoppingCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check_box, color: AppColors.secondary500),
+          // TODO: 체크 박스 바뀌게 구현
+          Icon(
+            cartItem.isSelected
+                ? Icons.check_box
+                : Icons.check_box_outline_blank,
+            color: AppColors.border,
+          ),
           SizedBox(width: 12),
           Expanded(
             child: Row(
@@ -47,7 +49,7 @@ class ShoppingCard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              productName,
+                              cartItem.product.name,
                               style: AppTextStyles.s16w400,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -60,7 +62,10 @@ class ShoppingCard extends StatelessWidget {
                           /// 오류 나서 임시로 값 넣어줌
                           CounterControl(count: 0),
                           Spacer(),
-                          Text('$productPrice원', style: AppTextStyles.s18w600),
+                          Text(
+                            '${cartItem.product.price}원',
+                            style: AppTextStyles.s18w600,
+                          ),
                         ],
                       ),
                     ],
