@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/widgets/bottom_button.dart';
 import 'package:tech_check_app/pages/shopping/widgets/shopping_card_list.dart';
 import 'package:tech_check_app/pages/shopping/widgets/shopping_empty_view.dart';
