@@ -14,15 +14,12 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
   // 프로덕트 리스트
-  List<ProductEntity> items = [
-    ProductEntity(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      name: "12",
-      description: "1212",
-      price: 12345,
-      images: ["image1.jpg", "image2.jpg"],
-    ),
-  ];
+  List<ProductEntity> productList = [];
+  void onCreate(ProductEntity item) {
+    setState(() {
+      productList.add(item);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +40,7 @@ class _ProductListPageState extends State<ProductListPage> {
         centerTitle: false,
       ),
       // 바디
-      body: items.isEmpty ? EmptylistItem() : ProductListItem(),
+      body: productList.isEmpty ? EmptylistItem() : ProductListItem(),
     );
   }
 }
