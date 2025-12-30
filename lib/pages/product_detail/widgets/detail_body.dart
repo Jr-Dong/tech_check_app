@@ -99,20 +99,18 @@ class DetailBody extends StatelessWidget {
                         ],
                       ),
                       Spacer(),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: AppColors.primary100,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          '팔로우',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.primary500),
+                      SizedBox(
+                        width: 95,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary100,
+                            foregroundColor: AppColors.primary500,
+                            elevation: 0,
+                          ),
+                          child: Text('팔로우', style: AppTextStyles.s16w400),
                           //
                         ),
-                        //
                       ),
                     ],
                   ),
