@@ -15,9 +15,33 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
   // 프로덕트 리스트
   List<ProductEntity> productList = [];
+  Map<ProductEntity, int> shoppingCart = {};
+  Set<ProductEntity> wishSet = {};
+
   void onCreate(ProductEntity item) {
     setState(() {
       productList.add(item);
+    });
+  }
+
+  void addToCart(ProductEntity product) {
+    setState(() {
+      if (shoppingCart.containsKey(product)) {
+        final currentCount = shoppingCart[product]!;
+        shoppingCart[product] = currentCount + 1;
+      } else {
+        shoppingCart[product] = 1;
+      }
+    });
+  }
+
+  void onToggleWish(ProductEntity item) {
+    setState(() {
+      if (wishSet.contains(item)) {
+        wishSet.remove(item);
+      } else {
+        wishSet.add(item);
+      }
     });
   }
 
@@ -40,9 +64,12 @@ class _ProductListPageState extends State<ProductListPage> {
       appBar: CommonAppBar(
         title: Image.asset('assets/images/techcheck_logo.png', height: 25),
         centerTitle: false,
+        shoppingCart: shoppingCart,
       ),
       // 바디
-      body: productList.isEmpty ? EmptylistItem() : ProductListItem(),
+      body: productList.isEmpty
+          ? EmptylistItem()
+          : ProductListItem(shoppingCart: shoppingCart),
     );
   }
 }

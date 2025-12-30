@@ -3,8 +3,9 @@ import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
 class ProductListItem extends StatefulWidget {
-  const ProductListItem({super.key});
-  // final ProductEntity item;
+  final Map<ProductEntity, int> shoppingCart;
+
+  const ProductListItem({super.key, required this.shoppingCart});
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -26,6 +27,7 @@ class _ProductListItemState extends State<ProductListItem> {
       itemCount: 8,
       itemBuilder: (context, index) {
         return ProductCard(
+          shoppingCart: widget.shoppingCart,
           name: "맥북 프로",
           price: "800,000원",
           index: index,

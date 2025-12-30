@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/shopping/widgets/cart_selection_header.dart';
 import 'package:tech_check_app/pages/shopping/widgets/payment_summary_card.dart';
 import 'package:tech_check_app/pages/shopping/widgets/shopping_card.dart';
 
 class ShoppingCardList extends StatelessWidget {
-  const ShoppingCardList({super.key});
+  final Map<ProductEntity, int> shoppingCart;
+
+  const ShoppingCardList({super.key, required this.shoppingCart});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class ShoppingCardList extends StatelessWidget {
             children: [
               // 쇼핑 카트 이미지
               ListView.builder(
-                itemCount: 5,
+                itemCount: shoppingCart.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
