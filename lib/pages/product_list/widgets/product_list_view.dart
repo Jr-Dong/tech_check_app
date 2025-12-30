@@ -27,6 +27,8 @@ class _ProductListItemState extends State<ProductListItem> {
       itemBuilder: (context, index) {
         final product = widget.productList[index];
         return ProductCard(
+          //
+          imageUrl: product.images[0],
           name: product.name,
           price: "${product.price}원",
           index: index,
