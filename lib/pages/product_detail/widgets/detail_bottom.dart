@@ -41,7 +41,11 @@ class DetailBottom extends StatelessWidget {
             SizedBox(height: 12),
             Row(
               children: [
-                Icon(Icons.favorite_border, color: AppColors.textSecondary),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.favorite_outline),
+                  color: AppColors.textSecondary,
+                ),
                 SizedBox(width: 12),
                 Expanded(
                   flex: 1,
