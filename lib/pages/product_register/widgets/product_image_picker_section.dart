@@ -68,6 +68,8 @@ class ImageAddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int timestamp = DateTime.now().millisecondsSinceEpoch;
+
     return SizedBox(
       width: 80,
       height: 80,
@@ -76,9 +78,7 @@ class ImageAddButton extends StatelessWidget {
             ? null
             : () {
                 if (onImageAdd != null && currentCount < 10) {
-                  onImageAdd!(
-                    "https://picsum.photos/300/300?seed=$currentCount",
-                  );
+                  onImageAdd!("https://picsum.photos/300/300?seed=$timestamp");
                 }
               },
         style: OutlinedButton.styleFrom(
