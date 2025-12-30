@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Slider;
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/pages/product_detail/widgets/carousel_slider_page.dart';
 
 class DetailBody extends StatelessWidget {
   const DetailBody({super.key});
@@ -11,7 +12,7 @@ class DetailBody extends StatelessWidget {
     return Expanded(
       child: ListView(
         children: [
-          Image.network("https://picsum.photos/id/852/400/320"),
+          CarouselSliderPage(),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
