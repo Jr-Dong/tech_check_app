@@ -57,7 +57,8 @@ class ShoppingCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          CounterControl(count: 2),
+                          /// 오류 나서 임시로 값 넣어줌
+                          CounterControl(count: 0),
                           Spacer(),
                           Text('$productPrice원', style: AppTextStyles.s18w600),
                         ],

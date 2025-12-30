@@ -8,6 +8,7 @@ class DetailBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int count;
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -28,7 +29,7 @@ class DetailBottom extends StatelessWidget {
           children: [
             Row(
               children: [
-                CounterControl(count: 2),
+                CounterControl(count: 0),
                 Spacer(),
                 Text(
                   "총 380,000 원",
