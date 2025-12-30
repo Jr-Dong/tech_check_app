@@ -40,13 +40,13 @@ class ShoppingEmptyView extends StatelessWidget {
             ),
             SizedBox(height: 21),
             TextButton(
-              // TODO: 왜 상품 리스트로 이동하고 뒤로가기 버튼이 생길까?
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ProductListPage(),
                   ),
+                  (route) => false,
                 );
               },
               style: TextButton.styleFrom(

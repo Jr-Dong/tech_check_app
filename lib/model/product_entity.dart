@@ -4,6 +4,7 @@ class ProductEntity {
   final String description; // 상품 설명
   final int price; // 가격
   final List<String> images; // 이미지
+  final bool isVerified; // 검증 여부
 
   ProductEntity({
     required this.id,
@@ -11,5 +12,6 @@ class ProductEntity {
     required this.description,
     required this.price,
     required this.images,
+    this.isVerified = false,
   });
 }

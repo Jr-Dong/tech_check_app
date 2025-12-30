@@ -3,7 +3,16 @@ import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
 class ProductImagePickerSection extends StatelessWidget {
-  const ProductImagePickerSection({super.key});
+  final List<String> productImages;
+  final void Function(String)? onImageAdd;
+  final void Function(String)? onRemoveImage;
+
+  const ProductImagePickerSection({
+    super.key,
+    required this.productImages,
+    required this.onImageAdd,
+    required this.onRemoveImage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +21,30 @@ class ProductImagePickerSection extends StatelessWidget {
       children: [
         SizedBox(
           height: 80,
-          child: ListView(
+          child: ListView.builder(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,
-            children: [
-              ImageAddButton(currentCount: 4),
-              SizedBox(width: 12),
-              ProductImageItem(isMain: true),
-              SizedBox(width: 12),
-              ProductImageItem(isMain: false),
-              SizedBox(width: 12),
-              ProductImageItem(isMain: false),
-              SizedBox(width: 12),
-              ProductImageItem(isMain: false),
-            ],
+            itemCount: productImages.length + 1,
+            itemBuilder: (context, index) {
+              if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: ImageAddButton(
+                    currentCount: productImages.length,
+                    onImageAdd: onImageAdd,
+                  ),
+                );
+              } else {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: ProductImageItem(
+                    isMain: index == 1,
+                    imageUrl: productImages[index - 1],
+                    onRemoveImage: onRemoveImage,
+                  ),
+                );
+              }
+            },
           ),
         ),
         SizedBox(height: 12),
@@ -40,8 +59,12 @@ class ProductImagePickerSection extends StatelessWidget {
 
 class ImageAddButton extends StatelessWidget {
   final int currentCount;
-
-  const ImageAddButton({super.key, this.currentCount = 0});
+  final void Function(String)? onImageAdd;
+  const ImageAddButton({
+    super.key,
+    this.currentCount = 0,
+    required this.onImageAdd,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +72,15 @@ class ImageAddButton extends StatelessWidget {
       width: 80,
       height: 80,
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: currentCount >= 10
+            ? null
+            : () {
+                if (onImageAdd != null && currentCount < 10) {
+                  onImageAdd!(
+                    "https://picsum.photos/300/300?seed=$currentCount",
+                  );
+                }
+              },
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: AppColors.border, width: 1),
           foregroundColor: AppColors.gray400,
@@ -67,8 +98,15 @@ class ImageAddButton extends StatelessWidget {
 
 class ProductImageItem extends StatelessWidget {
   final bool isMain;
+  final String imageUrl;
+  final void Function(String)? onRemoveImage;
 
-  const ProductImageItem({super.key, this.isMain = false});
+  const ProductImageItem({
+    super.key,
+    required this.imageUrl,
+    this.isMain = false,
+    required this.onRemoveImage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +118,7 @@ class ProductImageItem extends StatelessWidget {
           child: SizedBox(
             width: 80,
             height: 80,
-            child: Image.network('http://picsum.photos/80'),
+            child: Image.network(imageUrl, fit: BoxFit.cover),
           ),
         ),
         Positioned(
@@ -96,7 +134,9 @@ class ProductImageItem extends StatelessWidget {
             child: IconButton(
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
-              onPressed: () {},
+              onPressed: () {
+                onRemoveImage?.call(imageUrl);
+              },
               icon: const Icon(
                 Icons.close_rounded,
                 color: Colors.white,

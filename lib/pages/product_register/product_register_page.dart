@@ -22,11 +22,23 @@ class _ProductRegisterState extends State<ProductRegister> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
+  List<String> pruductImages = [];
+
   // 등록 버튼 클릭시 실행되는 함수
   // 모든 FormField의 유효성 검사를 수행하고,
   // 유효성 검사를 통과하면 이전 화면으로 돌아가고 스낵바를 표시
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      if (pruductImages.isEmpty) {
+        // 이미지가 없으면 스낵바 띄우고 종료
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text("상품 이미지를 최소 1장 등록해주세요!"),
+          ),
+        );
+        return;
+      }
       // 현재 페이지 닫기
       Navigator.pop(context);
 
@@ -37,6 +49,18 @@ class _ProductRegisterState extends State<ProductRegister> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
+  }
+
+  void addImage(String imagePath) {
+    setState(() {
+      pruductImages.add(imagePath);
+    });
+  }
+
+  void removeImage(String imagePath) {
+    setState(() {
+      pruductImages.remove(imagePath);
+    });
   }
 
   @override
@@ -82,7 +106,11 @@ class _ProductRegisterState extends State<ProductRegister> {
             child: Column(
               children: [
                 // 상품 이미지 영역
-                ProductImagePickerSection(),
+                ProductImagePickerSection(
+                  productImages: pruductImages,
+                  onImageAdd: addImage,
+                  onRemoveImage: removeImage,
+                ),
                 SizedBox(height: 18),
 
                 // 상품 제목 입력
