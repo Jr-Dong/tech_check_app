@@ -40,7 +40,9 @@ class _ProductListPageState extends State<ProductListPage> {
         centerTitle: false,
       ),
       // 바디
-      body: productList.isEmpty ? EmptylistItem() : ProductListItem(),
+      body: productList.isEmpty
+          ? EmptylistItem()
+          : ProductListItem(productList: productList),
     );
   }
 }
