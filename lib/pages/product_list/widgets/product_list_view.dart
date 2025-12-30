@@ -3,8 +3,8 @@ import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
 class ProductListItem extends StatefulWidget {
-  const ProductListItem({super.key});
-  // final ProductEntity item;
+  const ProductListItem({super.key, required this.productList});
+  final List<ProductEntity> productList;
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -23,11 +23,14 @@ class _ProductListItemState extends State<ProductListItem> {
         crossAxisSpacing: 15,
         childAspectRatio: 0.75,
       ),
-      itemCount: 8,
+      itemCount: widget.productList.length,
       itemBuilder: (context, index) {
+        final product = widget.productList[index];
         return ProductCard(
-          name: "맥북 프로",
-          price: "800,000원",
+          //
+          imageUrl: product.images[0],
+          name: product.name,
+          price: "${product.price}원",
           index: index,
           isFavorite: favoriteMap[index] ?? false,
           onFavoriteToggle: (newValue) {
