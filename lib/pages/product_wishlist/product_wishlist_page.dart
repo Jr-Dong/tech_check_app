@@ -5,6 +5,7 @@ import 'package:tech_check_app/pages/product_list/widgets/product_list_view.dart
 
 class ProductWishlistPage extends StatelessWidget {
   final Map<ProductEntity, int> shoppingCart;
+
   const ProductWishlistPage({super.key, required this.shoppingCart});
 
   @override
@@ -16,7 +17,7 @@ class ProductWishlistPage extends StatelessWidget {
         isWish: false,
         shoppingCart: shoppingCart,
       ),
-      body: ProductListItem(shoppingCart: shoppingCart),
+      body: ProductListItem(shoppingCart: shoppingCart, productList: []),
     );
   }
 }

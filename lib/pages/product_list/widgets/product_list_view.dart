@@ -6,8 +6,11 @@ class ProductListItem extends StatefulWidget {
   final Map<ProductEntity, int> shoppingCart;
   final List<ProductEntity> productList;
 
-  const ProductListItem({super.key, required this.productList, required this.shoppingCart});
-
+  const ProductListItem({
+    super.key,
+    required this.productList,
+    required this.shoppingCart,
+  });
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
