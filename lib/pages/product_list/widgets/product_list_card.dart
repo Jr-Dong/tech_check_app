@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_detail/product_detail_page.dart';
 
 class ProductCard extends StatelessWidget {
@@ -10,6 +11,7 @@ class ProductCard extends StatelessWidget {
   final int index;
   final bool isFavorite;
   final ValueChanged<bool> onFavoriteToggle;
+  final Map<ProductEntity, int> shoppingCart;
 
   const ProductCard({
     super.key,
@@ -19,6 +21,7 @@ class ProductCard extends StatelessWidget {
     required this.index,
     required this.isFavorite,
     required this.onFavoriteToggle,
+    required this.shoppingCart,
   });
 
   @override
@@ -27,7 +30,9 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const DetailPage()),
+          MaterialPageRoute(
+            builder: (context) => DetailPage(shoppingCart: shoppingCart),
+          ),
         );
       },
       child: Column(

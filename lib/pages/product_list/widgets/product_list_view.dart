@@ -3,8 +3,11 @@ import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
 class ProductListItem extends StatefulWidget {
-  const ProductListItem({super.key, required this.productList});
+  final Map<ProductEntity, int> shoppingCart;
   final List<ProductEntity> productList;
+
+  const ProductListItem({super.key, required this.productList, required this.shoppingCart});
+
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -32,6 +35,7 @@ class _ProductListItemState extends State<ProductListItem> {
           name: product.name,
           price: "${product.price}원",
           index: index,
+          shoppingCart: widget.shoppingCart,
           isFavorite: favoriteMap[index] ?? false,
           onFavoriteToggle: (newValue) {
             setState(() {
