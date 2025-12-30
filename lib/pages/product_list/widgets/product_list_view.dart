@@ -4,8 +4,10 @@ import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart
 
 class ProductListItem extends StatefulWidget {
   final Map<ProductEntity, int> shoppingCart;
+  final List<ProductEntity> productList;
 
-  const ProductListItem({super.key, required this.shoppingCart});
+  const ProductListItem({super.key, required this.productList, required this.shoppingCart});
+
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -24,13 +26,16 @@ class _ProductListItemState extends State<ProductListItem> {
         crossAxisSpacing: 15,
         childAspectRatio: 0.75,
       ),
-      itemCount: 8,
+      itemCount: widget.productList.length,
       itemBuilder: (context, index) {
+        final product = widget.productList[index];
         return ProductCard(
-          shoppingCart: widget.shoppingCart,
-          name: "맥북 프로",
-          price: "800,000원",
+          //
+          imageUrl: product.images[0],
+          name: product.name,
+          price: "${product.price}원",
           index: index,
+          shoppingCart: widget.shoppingCart,
           isFavorite: favoriteMap[index] ?? false,
           onFavoriteToggle: (newValue) {
             setState(() {

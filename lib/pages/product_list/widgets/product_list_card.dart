@@ -7,6 +7,7 @@ import 'package:tech_check_app/pages/product_detail/product_detail_page.dart';
 class ProductCard extends StatelessWidget {
   final String name;
   final String price;
+  final String imageUrl;
   final int index;
   final bool isFavorite;
   final ValueChanged<bool> onFavoriteToggle;
@@ -16,6 +17,7 @@ class ProductCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.price,
+    required this.imageUrl,
     required this.index,
     required this.isFavorite,
     required this.onFavoriteToggle,
@@ -42,7 +44,7 @@ class ProductCard extends StatelessWidget {
             child: Stack(
               children: [
                 Image.network(
-                  "https://picsum.photos/200?random=$index",
+                  imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 150,

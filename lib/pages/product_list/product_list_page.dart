@@ -69,7 +69,7 @@ class _ProductListPageState extends State<ProductListPage> {
       // 바디
       body: productList.isEmpty
           ? EmptylistItem()
-          : ProductListItem(shoppingCart: shoppingCart),
+          : ProductListItem(productList: productList, shoppingCart: shoppingCart),
     );
   }
 }
