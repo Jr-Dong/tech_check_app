@@ -30,7 +30,7 @@ class _ProductListPageState extends State<ProductListPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductRegister(onCreate: onCreate()),
+              builder: (context) => ProductRegister(onCreate: onCreate),
             ),
           );
         },

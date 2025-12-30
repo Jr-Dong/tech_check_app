@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/bottom_button.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_register/widgets/form_field_section.dart';
 import 'package:tech_check_app/pages/product_register/widgets/price_form_field_section.dart';
 import 'package:tech_check_app/pages/product_register/widgets/product_image_picker_section.dart';
 
 // 상품 등록 페이지
 class ProductRegister extends StatefulWidget {
-  final void Function() onCreate;
+  final void Function(ProductEntity) onCreate;
 
   const ProductRegister({super.key, required this.onCreate});
 
@@ -43,8 +45,15 @@ class _ProductRegisterState extends State<ProductRegister> {
         return;
       }
       // 상품 등록 로직 수행
-      widget.onCreate();
-
+      final ProductEntity newProduct = ProductEntity(
+        id: DateTime.now().toString(),
+        name: titleController.text,
+        price: int.parse(priceController.text.replaceAll(',', '')),
+        description: descriptionController.text,
+        images: pruductImages,
+        isVerified: Random().nextBool(),
+      );
+      widget.onCreate(newProduct);
       // 현재 페이지 닫기
       Navigator.pop(context);
 
