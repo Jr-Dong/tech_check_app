@@ -18,14 +18,14 @@ class DesignSystemPreviewPage extends StatelessWidget {
           FloatingActionButton(
             heroTag: 'fab-secondary',
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ProductRegister();
-                  },
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       // return ProductRegister();
+              //     },
+              //   ),
+              // );
             },
             child: const Icon(Icons.edit),
           ),

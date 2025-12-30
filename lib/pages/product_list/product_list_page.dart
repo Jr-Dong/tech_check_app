@@ -29,7 +29,9 @@ class _ProductListPageState extends State<ProductListPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ProductRegister()),
+            MaterialPageRoute(
+              builder: (context) => ProductRegister(onCreate: onCreate()),
+            ),
           );
         },
         child: Icon(Icons.add),

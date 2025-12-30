@@ -8,7 +8,9 @@ import 'package:tech_check_app/pages/product_register/widgets/product_image_pick
 
 // 상품 등록 페이지
 class ProductRegister extends StatefulWidget {
-  const ProductRegister({super.key});
+  final void Function() onCreate;
+
+  const ProductRegister({super.key, required this.onCreate});
 
   @override
   State<ProductRegister> createState() => _ProductRegisterState();
@@ -40,6 +42,9 @@ class _ProductRegisterState extends State<ProductRegister> {
         );
         return;
       }
+      // 상품 등록 로직 수행
+      widget.onCreate();
+
       // 현재 페이지 닫기
       Navigator.pop(context);
 
