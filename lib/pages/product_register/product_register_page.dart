@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/core/widgets/bottom_button.dart';
 import 'package:tech_check_app/pages/product_register/widgets/form_field_section.dart';
 import 'package:tech_check_app/pages/product_register/widgets/price_form_field_section.dart';
 import 'package:tech_check_app/pages/product_register/widgets/product_image_picker_section.dart';
@@ -34,7 +35,7 @@ class _ProductRegisterState extends State<ProductRegister> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: Text("상품 이미지를 최소 1장 등록해주세요!"),
+            content: Text("상품 이미지를 최소 1장 등록해주세요"),
           ),
         );
         return;
@@ -83,19 +84,10 @@ class _ProductRegisterState extends State<ProductRegister> {
         resizeToAvoidBottomInset: false,
 
         // 하단 고정 등록하기 버튼
-        bottomNavigationBar: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  _submitForm();
-                },
-                child: const Text("등록하기"),
-              ),
-            ),
-          ),
+        bottomNavigationBar: BottomButton(
+          text: "등록하기",
+          onPressed: _submitForm,
+          hasShadow: false,
         ),
 
         // 입력 폼 영역
