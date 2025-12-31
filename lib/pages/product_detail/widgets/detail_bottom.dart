@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 
-class DetailBottom extends StatelessWidget {
-  const DetailBottom({super.key});
+class DetailBottom extends StatefulWidget {
+  const DetailBottom({super.key, required this.product});
+  final ProductEntity product;
+
+  @override
+  State<DetailBottom> createState() => _DetailBottomState();
+}
+
+class _DetailBottomState extends State<DetailBottom> {
+  int count = 1;
+
+  void countUp() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void countDown() {
+    setState(() {
+      count--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +50,39 @@ class DetailBottom extends StatelessWidget {
           children: [
             Row(
               children: [
-                CounterControl(count: 0),
+                CounterControl(
+                  count: count,
+                  countUp: countUp,
+                  countDown: countDown,
+                ),
                 Spacer(),
                 Text(
-                  "총 380,000 원",
-                  style: AppTextStyles.s20w600.copyWith(
+                  "총",
+                  style: AppTextStyles.s18w600.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Text(
+                  NumberFormat.currency(
+                    locale: 'ko',
+                    symbol: '',
+                    decimalDigits: 0,
+                  ).format(widget.product.price),
+                  style: AppTextStyles.s18w600.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Text(
+                  "원",
+                  style: AppTextStyles.s18w600.copyWith(
                     color: AppColors.textPrimary,
                   ),
                 ),
               ],
             ),
+
             SizedBox(height: 12),
             Row(
               children: [

@@ -42,6 +42,7 @@ class _ProductListItemState extends State<ProductListItem> {
               context,
               MaterialPageRoute(
                 builder: (context) => DetailPage(
+                  product: product,
                   shoppingCart: widget.shoppingCart,
                   wishSet: widget.wishSet,
                   onToggleWish: widget.onToggleWish,

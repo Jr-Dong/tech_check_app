@@ -9,12 +9,14 @@ class DetailPage extends StatelessWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
+  final ProductEntity product;
 
   const DetailPage({
     super.key,
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.product,
   });
 
   @override
@@ -27,11 +29,11 @@ class DetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          DetailBody(),
+          DetailBody(product: product),
           //
         ],
       ),
-      bottomSheet: DetailBottom(),
+      bottomSheet: DetailBottom(product: product),
     );
   }
 }
