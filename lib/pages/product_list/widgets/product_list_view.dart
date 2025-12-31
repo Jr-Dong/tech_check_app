@@ -9,6 +9,7 @@ class ProductListItem extends StatefulWidget {
   final Set<ProductEntity> wishSet;
   final List<ProductEntity> productList;
   final void Function(ProductEntity) onToggleWish;
+  final void Function(ProductEntity) addToCart;
 
   const ProductListItem({
     super.key,
@@ -16,6 +17,7 @@ class ProductListItem extends StatefulWidget {
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.addToCart,
   });
 
   @override
@@ -43,6 +45,7 @@ class _ProductListItemState extends State<ProductListItem> {
               MaterialPageRoute(
                 builder: (context) => DetailPage(
                   product: product,
+                  addToCart: widget.addToCart,
                   shoppingCart: widget.shoppingCart,
                   wishSet: widget.wishSet,
                   onToggleWish: widget.onToggleWish,
@@ -52,13 +55,9 @@ class _ProductListItemState extends State<ProductListItem> {
           },
           child: ProductCard(
             product: product,
-            imageUrl: product.images[0],
-            name: product.name,
-            price: product.price,
             index: index,
             shoppingCart: widget.shoppingCart,
             wishSet: widget.wishSet,
-            isVerified: product.isVerified,
             onToggleWish: (product) {
               setState(() {
                 widget.onToggleWish(product); // 상위에서 wishSet 갱신

@@ -10,6 +10,7 @@ class DetailPage extends StatelessWidget {
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
   final ProductEntity product;
+  final void Function(ProductEntity) addToCart;
 
   const DetailPage({
     super.key,
@@ -17,6 +18,7 @@ class DetailPage extends StatelessWidget {
     required this.wishSet,
     required this.onToggleWish,
     required this.product,
+    required this.addToCart,
   });
 
   @override
@@ -33,7 +35,9 @@ class DetailPage extends StatelessWidget {
           //
         ],
       ),
-      bottomSheet: DetailBottom(product: product),
+
+      bottomSheet: DetailBottom(addToCart: addToCart, product: product),
+
     );
   }
 }

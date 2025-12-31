@@ -82,6 +82,7 @@ class _ProductListPageState extends State<ProductListPage> {
               description: "+ 버튼을 눌러 첫 상품을 등록해보세요!",
             )
           : ProductListItem(
+              addToCart: addToCart,
               productList: productList,
               shoppingCart: cartItems,
               wishSet: wishSet,
