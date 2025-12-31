@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/core/widgets/counter_control.dart';
 import 'package:tech_check_app/model/cart_item.dart';
 
 class ShoppingCard extends StatefulWidget {
