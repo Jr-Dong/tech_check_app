@@ -36,11 +36,8 @@ class _ShoppingPageState extends State<ShoppingPage> {
   // 개별 체크 토글
   void toggleSelected(String id) {
     setState(() {
-      // 리스트에서 해당 ID를 가진 아이템을 찾아 상태를 반전시킴
-      final index = _items.indexWhere((item) => item.product.id == id);
-      if (index != -1) {
-        _items[index].isSelected = !_items[index].isSelected;
-      }
+      final targetItem = _items.firstWhere((item) => item.product.id == id);
+      targetItem.isSelected = !targetItem.isSelected;
     });
   }
 
