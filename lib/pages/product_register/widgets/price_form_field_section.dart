@@ -58,7 +58,7 @@ class PriceFormFieldSection extends StatelessWidget {
               symbol: '',
               decimalDigits: 0,
             ),
-            LengthLimitingTextInputFormatter(9),
+            LengthLimitingTextInputFormatter(11),
           ],
           validator: validator,
         ),

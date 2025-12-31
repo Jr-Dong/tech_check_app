@@ -15,16 +15,14 @@ class ShoppingPage extends StatelessWidget {
       bottomNavigationBar: shoppingCart.isEmpty
           ? null
           : BottomButton(text: "구매하기", onPressed: null, hasShadow: true),
-      body:
-          // shoppingCart.isEmpty
-          //     ? CommonEmptyListItem(
-          //         title: "장바구니가 비어있어요",
-          //         description: "원하는 상품을 담아 보세요!",
-          //         icon: Icons.shopping_bag_outlined,
-          //         visualSize: 160,
-          //       )
-          //     :
-          ShoppingCardList(shoppingCart: shoppingCart),
+      body: shoppingCart.isEmpty
+          ? CommonEmptyListItem(
+              title: "장바구니가 비어있어요",
+              description: "원하는 상품을 담아 보세요!",
+              icon: Icons.shopping_bag_outlined,
+              visualSize: 160,
+            )
+          : ShoppingCardList(shoppingCart: shoppingCart),
     );
   }
 }
