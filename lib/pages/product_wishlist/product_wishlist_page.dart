@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/widgets/common_app_bar.dart';
 import 'package:tech_check_app/core/widgets/common_empty_view.dart';
