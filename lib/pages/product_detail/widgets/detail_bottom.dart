@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
+import 'package:tech_check_app/model/product_entity.dart';
 
 class DetailBottom extends StatelessWidget {
-  const DetailBottom({super.key});
+  const DetailBottom({super.key, required this.addToCart});
+
+  final void Function(ProductEntity) addToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,17 @@ class DetailBottom extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      addToCart(
+                        ProductEntity(
+                          id: '1',
+                          name: 'name',
+                          description: 'description',
+                          price: 1,
+                          images: [],
+                        ),
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: AppColors.primary100,
                     ),
