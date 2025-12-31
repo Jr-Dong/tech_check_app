@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
@@ -35,7 +36,7 @@ class ShoppingCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: Image.network(
-                    'https://picsum.photos/100/100',
+                    cartItem.product.images[0],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -62,9 +63,18 @@ class ShoppingCard extends StatelessWidget {
                           /// 오류 나서 임시로 값 넣어줌
                           // CounterControl(count: 0),
                           Spacer(),
-                          Text(
-                            '${cartItem.product.price}원',
-                            style: AppTextStyles.s18w600,
+                          Row(
+                            children: [
+                              Text(
+                                NumberFormat.currency(
+                                  locale: 'ko',
+                                  symbol: '',
+                                  decimalDigits: 0,
+                                ).format(cartItem.product.price),
+                                style: AppTextStyles.s18w600,
+                              ),
+                              Text("원", style: AppTextStyles.s18w600),
+                            ],
                           ),
                         ],
                       ),

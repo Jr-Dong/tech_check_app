@@ -6,9 +6,13 @@ import 'package:tech_check_app/core/widgets/counter_control.dart';
 import 'package:tech_check_app/model/product_entity.dart';
 
 class DetailBottom extends StatefulWidget {
-  const DetailBottom({super.key, required this.product, required this.addToCart});
+  const DetailBottom({
+    super.key,
+    required this.product,
+    required this.addToCart,
+  });
   final ProductEntity product;
-   final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity) addToCart;
 
   @override
   State<DetailBottom> createState() => _DetailBottomState();
@@ -97,15 +101,7 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
-                      addToCart(
-                        ProductEntity(
-                          id: '1',
-                          name: 'name',
-                          description: 'description',
-                          price: 1,
-                          images: [],
-                        ),
-                      );
+                      widget.addToCart(widget.product);
                     },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: AppColors.primary100,
