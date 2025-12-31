@@ -3,16 +3,20 @@ import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
+import 'package:tech_check_app/pages/shopping/shopping_page.dart';
 
 class DetailBottom extends StatefulWidget {
   const DetailBottom({
     super.key,
     required this.product,
     required this.addToCart,
+    required this.shoppingCart,
   });
   final ProductEntity product;
   final void Function(ProductEntity) addToCart;
+  final List<CartItem> shoppingCart;
 
   @override
   State<DetailBottom> createState() => _DetailBottomState();
@@ -101,6 +105,13 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ShoppingPage(shoppingCart: widget.shoppingCart),
+                        ),
+                      );
                       widget.addToCart(widget.product);
                     },
                     style: OutlinedButton.styleFrom(

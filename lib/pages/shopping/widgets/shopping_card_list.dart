@@ -10,7 +10,16 @@ class ShoppingCardList extends StatelessWidget {
   const ShoppingCardList({super.key, required this.shoppingCart});
 
   @override
+  int calculateTotalPrice(List<CartItem> cartItems) {
+    int totalPrice = cartItems.fold(0, (previousValue, item) {
+      return previousValue + (item.product.price * item.quantity);
+    });
+    return totalPrice;
+  }
+
   Widget build(BuildContext context) {
+    final int totalPrice = calculateTotalPrice(shoppingCart);
+
     return Column(
       children: [
         CartSelectionHeader(
@@ -26,7 +35,7 @@ class ShoppingCardList extends StatelessWidget {
                 final item = shoppingCart[index];
                 return ShoppingCard(cartItem: item);
               } else {
-                return PaymentSummaryCard(total: 1000);
+                return PaymentSummaryCard(total: totalPrice);
               }
             },
           ),

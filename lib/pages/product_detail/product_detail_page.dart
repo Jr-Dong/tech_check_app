@@ -36,8 +36,11 @@ class DetailPage extends StatelessWidget {
         ],
       ),
 
-      bottomSheet: DetailBottom(addToCart: addToCart, product: product),
-
+      bottomSheet: DetailBottom(
+        addToCart: addToCart,
+        product: product,
+        shoppingCart: shoppingCart,
+      ),
     );
   }
 }

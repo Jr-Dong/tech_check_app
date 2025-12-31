@@ -5,13 +5,33 @@ import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
 import 'package:tech_check_app/model/cart_item.dart';
 
-class ShoppingCard extends StatelessWidget {
+class ShoppingCard extends StatefulWidget {
   final CartItem cartItem;
 
   const ShoppingCard({super.key, required this.cartItem});
 
   @override
+  State<ShoppingCard> createState() => _ShoppingCardState();
+}
+
+class _ShoppingCardState extends State<ShoppingCard> {
+  late int count = widget.cartItem.quantity;
+
+  void countUp() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void countDown() {
+    setState(() {
+      count--;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(count);
     return Container(
       height: 130,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -23,7 +43,7 @@ class ShoppingCard extends StatelessWidget {
         children: [
           // TODO: 체크 박스 바뀌게 구현
           Icon(
-            cartItem.isSelected
+            widget.cartItem.isSelected
                 ? Icons.check_box
                 : Icons.check_box_outline_blank,
             color: AppColors.border,
@@ -36,7 +56,7 @@ class ShoppingCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: Image.network(
-                    cartItem.product.images[0],
+                    widget.cartItem.product.images[0],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -50,7 +70,7 @@ class ShoppingCard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              cartItem.product.name,
+                              widget.cartItem.product.name,
                               style: AppTextStyles.s16w400,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -60,8 +80,11 @@ class ShoppingCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          /// 오류 나서 임시로 값 넣어줌
-                          // CounterControl(count: 0),
+                          CounterControl(
+                            count: count,
+                            countDown: countDown,
+                            countUp: countUp,
+                          ),
                           Spacer(),
                           Row(
                             children: [
@@ -70,7 +93,7 @@ class ShoppingCard extends StatelessWidget {
                                   locale: 'ko',
                                   symbol: '',
                                   decimalDigits: 0,
-                                ).format(cartItem.product.price),
+                                ).format(widget.cartItem.product.price),
                                 style: AppTextStyles.s18w600,
                               ),
                               Text("원", style: AppTextStyles.s18w600),
