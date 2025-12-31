@@ -27,20 +27,22 @@ class _ProductListPageState extends State<ProductListPage> {
 
   // 카트 추가하는 함수
   void addToCart(ProductEntity product, int quantity) {
-    // quantity 인자 추가
     setState(() {
-      final index = cartItems.indexWhere(
-        (item) => item.product.id == product.id,
-      );
+      bool isAlreadyInCart = false;
 
-      if (index != -1) {
-        // 이미 있으면 현재 선택한 수량만큼 더해줌
-        cartItems[index].quantity += quantity;
-      } else {
-        // 없으면 선택한 수량으로 새로 추가
-        cartItems.add(
-          CartItem(product: product, quantity: quantity, isSelected: true),
-        );
+      // 1. 장바구니를 하나씩 확인합니다.
+      for (var item in cartItems) {
+        if (item.product.id == product.id) {
+          // 2. 똑같은 상품을 찾았다면 수량만 더해줍니다.
+          item.quantity += quantity;
+          isAlreadyInCart = true;
+          break;
+        }
+      }
+
+      // 3. 끝까지 확인했는데 없다면 새로 추가합니다.
+      if (isAlreadyInCart == false) {
+        cartItems.add(CartItem(product: product, quantity: quantity));
       }
     });
   }
