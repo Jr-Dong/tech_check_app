@@ -16,7 +16,7 @@ class ProductWishlistPage extends StatelessWidget {
         isWish: false,
         shoppingCart: shoppingCart,
       ),
-      body: ProductListItem(shoppingCart: shoppingCart),
+      body: ProductListItem(shoppingCart: shoppingCart, productList: []),
     );
   }
 }
