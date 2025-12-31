@@ -66,6 +66,7 @@ lib/
 ├── pages/                 # 기능별 페이지 단위 구성
 │   ├── product_detail/    # 상세 페이지 및 Carousel Slider 위젯
 │   ├── product_list/      # 목록 페이지 및 리스트 아이템 위젯
+│   ├── product_wishlist/  # 찜하기 페이지
 │   ├── product_register/  # 등록 폼 및 섹션별 위젯
 │   └── shopping/          # 장바구니 및 결제 요약 위젯
 └── main.dart              # 앱 진입점
