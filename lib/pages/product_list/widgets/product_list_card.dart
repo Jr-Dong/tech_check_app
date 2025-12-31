@@ -62,7 +62,13 @@ class ProductCard extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            Text(product.name, style: AppTextStyles.s18w500),
+            Expanded(
+              child: Text(
+                product.name,
+                style: AppTextStyles.s18w500,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             SizedBox(width: 4),
             if (product.isVerified)
               Icon(
