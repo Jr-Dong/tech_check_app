@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 
 class PaymentSummaryCard extends StatelessWidget {
   final int total;
@@ -26,7 +28,15 @@ class PaymentSummaryCard extends StatelessWidget {
             children: [
               Text('총 상품 금액', style: AppTextStyles.s16w400),
               Spacer(),
-              Text('$total원', style: AppTextStyles.s16w400),
+              Text(
+                NumberFormat.currency(
+                  locale: 'ko',
+                  symbol: '',
+                  decimalDigits: 0,
+                ).format(total),
+                style: AppTextStyles.s18w600,
+              ),
+              Text("원", style: AppTextStyles.s18w600),
             ],
           ),
           SizedBox(height: 8),
@@ -44,7 +54,16 @@ class PaymentSummaryCard extends StatelessWidget {
             children: [
               Text('총 주문금액', style: AppTextStyles.s16w400),
               Spacer(),
-              Text('$total원', style: AppTextStyles.s16w400),
+              // Text('$total원', style: AppTextStyles.s16w400),
+              Text(
+                NumberFormat.currency(
+                  locale: 'ko',
+                  symbol: '',
+                  decimalDigits: 0,
+                ).format(total),
+                style: AppTextStyles.s18w600,
+              ),
+              Text("원", style: AppTextStyles.s18w600),
             ],
           ),
         ],

@@ -40,8 +40,10 @@ class DetailPage extends StatelessWidget {
       bottomSheet: DetailBottom(
         addToCart: addToCart,
         product: product,
+        shoppingCart: shoppingCart,
         onToggleWish: onToggleWish,
         wishSet: wishSet,
+
       ),
     );
   }
