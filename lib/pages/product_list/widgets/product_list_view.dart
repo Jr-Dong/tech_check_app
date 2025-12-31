@@ -6,8 +6,11 @@ class ProductListItem extends StatefulWidget {
   final Map<ProductEntity, int> shoppingCart;
   final List<ProductEntity> productList;
 
-  const ProductListItem({super.key, required this.productList, required this.shoppingCart});
-
+  const ProductListItem({
+    super.key,
+    required this.productList,
+    required this.shoppingCart,
+  });
 
   @override
   State<ProductListItem> createState() => _ProductListItemState();
@@ -33,10 +36,11 @@ class _ProductListItemState extends State<ProductListItem> {
           //
           imageUrl: product.images[0],
           name: product.name,
-          price: "${product.price}원",
+          price: product.price,
           index: index,
           shoppingCart: widget.shoppingCart,
           isFavorite: favoriteMap[index] ?? false,
+          isVerified: product.isVerified,
           onFavoriteToggle: (newValue) {
             setState(() {
               favoriteMap[index] = newValue;
