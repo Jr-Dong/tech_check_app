@@ -68,6 +68,7 @@ class _ProductListPageState extends State<ProductListPage> {
       ),
       // 앱바
       appBar: CommonAppBar(
+        addToCart: addToCart,
         title: Image.asset('assets/images/techcheck_logo.png', height: 25),
         centerTitle: false,
         shoppingCart: cartItems,

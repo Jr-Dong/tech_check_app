@@ -28,6 +28,7 @@ class DetailPage extends StatelessWidget {
         shoppingCart: shoppingCart,
         wishSet: wishSet,
         onToggleWish: onToggleWish,
+        addToCart: addToCart,
       ),
       body: Column(
         children: [
@@ -36,8 +37,12 @@ class DetailPage extends StatelessWidget {
         ],
       ),
 
-      bottomSheet: DetailBottom(addToCart: addToCart, product: product),
-
+      bottomSheet: DetailBottom(
+        addToCart: addToCart,
+        product: product,
+        onToggleWish: onToggleWish,
+        wishSet: wishSet,
+      ),
     );
   }
 }
