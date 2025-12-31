@@ -13,6 +13,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
+  final void Function(ProductEntity) addToCart;
 
   const CommonAppBar({
     super.key,
@@ -22,6 +23,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.addToCart,
   });
 
   @override
@@ -37,6 +39,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProductWishlistPage(
+                    addToCart: addToCart,
                     shoppingCart: shoppingCart,
                     wishSet: wishSet,
                     onToggleWish: onToggleWish,

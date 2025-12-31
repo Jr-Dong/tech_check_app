@@ -11,9 +11,13 @@ class DetailBottom extends StatefulWidget {
     super.key,
     required this.product,
     required this.addToCart,
+    required this.onToggleWish,
+    required this.wishSet,
   });
   final ProductEntity product;
   final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity) onToggleWish;
+  final Set<ProductEntity> wishSet;
 
   @override
   State<DetailBottom> createState() => _DetailBottomState();
@@ -36,6 +40,8 @@ class _DetailBottomState extends State<DetailBottom> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isFavorite = widget.wishSet.contains(widget.product);
+
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -74,7 +80,7 @@ class _DetailBottomState extends State<DetailBottom> {
                     locale: 'ko',
                     symbol: '',
                     decimalDigits: 0,
-                  ).format(widget.product.price),
+                  ).format(widget.product.price * count),
                   style: AppTextStyles.s18w600.copyWith(
                     color: AppColors.textPrimary,
                   ),
@@ -93,9 +99,16 @@ class _DetailBottomState extends State<DetailBottom> {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite_outline),
-                  color: AppColors.textSecondary,
+                  onPressed: () {
+                    widget.onToggleWish(widget.product);
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_outline,
+                    color: isFavorite
+                        ? AppColors.heartPink
+                        : AppColors.textSecondary,
+                  ),
                 ),
                 SizedBox(width: 12),
                 Expanded(
@@ -125,17 +138,40 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 2,
                   child: ElevatedButton(
                     onPressed: () {
-                      showCupertinoDialog(context: context, builder: context){
-                        return CupertinoAlertDialog(
-                          title: Text("제목"),
-                          content: Text("내용"),
-                        actions: [
-                          CupertinoDialogAction(isDefaultAction: true,child: Text('확인'),onPressed: (){Navigator.pop(context);
-                              },
-                            )
-                          ],
-                        );
-                      };
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (context) {
+                          return CupertinoAlertDialog(
+                            title: Text("구매 안내"),
+                            content: Text("해당 상품을 구매하겠습니까?"),
+                            actions: [
+                              CupertinoDialogAction(
+                                isDefaultAction: true,
+                                textStyle: TextStyle(color: Colors.red),
+                                child: Text('취소'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              CupertinoDialogAction(
+                                isDefaultAction: true,
+                                child: Text('확인'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      behavior: SnackBarBehavior.floating,
+                                      content: Text(
+                                        "${widget.product.name}을(를) $count개 구매했습니다",
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     child: Text('구매하기', style: AppTextStyles.s16w400),
 

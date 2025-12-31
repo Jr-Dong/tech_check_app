@@ -1,19 +1,24 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/widgets/common_app_bar.dart';
 import 'package:tech_check_app/core/widgets/common_empty_view.dart';
 import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
+import 'package:tech_check_app/pages/product_list/widgets/product_list_view.dart';
 
 class ProductWishlistPage extends StatefulWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
+  final void Function(ProductEntity) addToCart;
 
   const ProductWishlistPage({
     super.key,
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.addToCart,
   });
 
   @override
@@ -31,6 +36,7 @@ class _ProductWishlistPageState extends State<ProductWishlistPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(
+        addToCart: widget.addToCart,
         title: Text("WishList"),
         centerTitle: true,
         isWish: false,
@@ -47,15 +53,15 @@ class _ProductWishlistPageState extends State<ProductWishlistPage> {
               title: "찜 목록이 비어있어요",
               description: "마음에 드는 상품을 담아 보세요!",
             )
-          : SizedBox(),
-      // ProductListItem(
-      //     shoppingCart: widget.shoppingCart,
-      //     productList: widget.wishSet.toList(),
-      //     wishSet: widget.wishSet,
-      //     onToggleWish: (product) {
-      //       _handleToggleWish(product);
-      //     },
-      //   ),
+          : ProductListItem(
+              shoppingCart: widget.shoppingCart,
+              productList: widget.wishSet.toList(),
+              wishSet: widget.wishSet,
+              onToggleWish: (product) {
+                _handleToggleWish(product);
+              },
+              addToCart: widget.addToCart,
+            ),
     );
   }
 }
