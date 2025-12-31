@@ -53,10 +53,11 @@ class _ProductListItemState extends State<ProductListItem> {
             product: product,
             imageUrl: product.images[0],
             name: product.name,
-            price: "${product.price}원",
+            price: product.price,
             index: index,
             shoppingCart: widget.shoppingCart,
             wishSet: widget.wishSet,
+            isVerified: product.isVerified,
             onToggleWish: (product) {
               setState(() {
                 widget.onToggleWish(product); // 상위에서 wishSet 갱신

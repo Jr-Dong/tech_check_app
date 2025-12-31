@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/model/cart_item.dart';
@@ -7,12 +9,14 @@ import 'package:tech_check_app/model/product_entity.dart';
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
   final String name;
-  final String price;
+  final int price;
   final String imageUrl;
   final int index;
+
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
+  final bool isVerified;
 
   const ProductCard({
     super.key,
@@ -24,6 +28,7 @@ class ProductCard extends StatelessWidget {
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.isVerified,
   });
 
   @override
@@ -61,8 +66,33 @@ class ProductCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Text(name, style: AppTextStyles.s18w500),
-        Text(price, style: AppTextStyles.s18w600),
+        Row(
+          children: [
+            Text(name, style: AppTextStyles.s18w500),
+            SizedBox(width: 4),
+            if (isVerified)
+              Icon(
+                CupertinoIcons.checkmark_seal_fill,
+                color: AppColors.secondary500,
+                size: 14,
+              ),
+          ],
+        ),
+        price == 0
+            ? Text("무료", style: AppTextStyles.s18w600)
+            : Row(
+                children: [
+                  Text(
+                    NumberFormat.currency(
+                      locale: 'ko',
+                      symbol: '',
+                      decimalDigits: 0,
+                    ).format(price),
+                    style: AppTextStyles.s18w600,
+                  ),
+                  Text("원", style: AppTextStyles.s18w600),
+                ],
+              ),
       ],
     );
   }
