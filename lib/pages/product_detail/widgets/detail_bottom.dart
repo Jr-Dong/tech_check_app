@@ -147,7 +147,9 @@ class _DetailBottomState extends State<DetailBottom> {
                         builder: (context) {
                           return CupertinoAlertDialog(
                             title: Text("구매 안내"),
-                            content: Text("해당 상품을 구매하겠습니까?"),
+                            content: Text(
+                              "${widget.product.name}을(를) $count개 구매하겠습니까?",
+                            ),
                             actions: [
                               CupertinoDialogAction(
                                 isDefaultAction: true,
