@@ -1,5 +1,6 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
@@ -57,6 +58,7 @@ class PriceFormFieldSection extends StatelessWidget {
               symbol: '',
               decimalDigits: 0,
             ),
+            LengthLimitingTextInputFormatter(11),
           ],
           validator: validator,
         ),

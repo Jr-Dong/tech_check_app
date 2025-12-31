@@ -33,37 +33,41 @@ class _ProductRegisterState extends State<ProductRegister> {
   // 모든 FormField의 유효성 검사를 수행하고,
   // 유효성 검사를 통과하면 이전 화면으로 돌아가고 스낵바를 표시
   void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      if (pruductImages.isEmpty) {
-        // 이미지가 없으면 스낵바 띄우고 종료
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            behavior: SnackBarBehavior.floating,
-            content: Text("상품 이미지를 최소 1장 등록해주세요"),
-          ),
-        );
-        return;
-      }
-      // 상품 등록 로직 수행
-      final ProductEntity newProduct = ProductEntity(
-        id: DateTime.now().toString(),
-        name: titleController.text,
-        price: int.parse(priceController.text.replaceAll(',', '')),
-        description: descriptionController.text,
-        images: pruductImages,
-        isVerified: Random().nextBool(),
+    // 1️. 이미지  검사
+    if (pruductImages.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text("상품 이미지를 최소 1장 등록해주세요"),
+        ),
       );
-      widget.onCreate(newProduct);
-      // 현재 페이지 닫기
-      Navigator.pop(context);
+      return;
+    }
 
-      // snackbar 띄우기
-      SnackBar snackBar = SnackBar(
+    // 2. 텍스트 폼 검사
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    // 3. 상품 등록 로직
+    final ProductEntity newProduct = ProductEntity(
+      id: DateTime.now().toString(),
+      name: titleController.text,
+      price: int.parse(priceController.text.replaceAll(',', '')),
+      description: descriptionController.text,
+      images: pruductImages,
+      isVerified: Random().nextBool(),
+    );
+
+    widget.onCreate(newProduct);
+    Navigator.pop(context);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text("상품이 성공적으로 등록되었습니다!"),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
+      ),
+    );
   }
 
   void addImage(String imagePath) {

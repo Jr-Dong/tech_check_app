@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/widgets/common_app_bar.dart';
+import 'package:tech_check_app/core/widgets/common_empty_view.dart';
+import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
-import 'package:tech_check_app/pages/product_list/widgets/empty_list_item.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_view.dart';
 import 'package:tech_check_app/pages/product_register/product_register_page.dart';
 
@@ -15,7 +16,7 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
   // 프로덕트 리스트
   List<ProductEntity> productList = [];
-  Map<ProductEntity, int> shoppingCart = {};
+  List<CartItem> cartItems = [];
   Set<ProductEntity> wishSet = {};
 
   void onCreate(ProductEntity item) {
@@ -26,11 +27,16 @@ class _ProductListPageState extends State<ProductListPage> {
 
   void addToCart(ProductEntity product) {
     setState(() {
-      if (shoppingCart.containsKey(product)) {
-        final currentCount = shoppingCart[product]!;
-        shoppingCart[product] = currentCount + 1;
+      final index = cartItems.indexWhere(
+        (item) => item.product.id == product.id,
+      );
+
+      if (index != -1) {
+        cartItems[index].quantity += 1;
       } else {
-        shoppingCart[product] = 1;
+        cartItems.add(
+          CartItem(product: product, quantity: 1, isSelected: true),
+        );
       }
     });
   }
@@ -64,12 +70,23 @@ class _ProductListPageState extends State<ProductListPage> {
       appBar: CommonAppBar(
         title: Image.asset('assets/images/techcheck_logo.png', height: 25),
         centerTitle: false,
-        shoppingCart: shoppingCart,
+        shoppingCart: cartItems,
+        wishSet: wishSet,
+        onToggleWish: onToggleWish,
       ),
       // 바디
       body: productList.isEmpty
-          ? EmptylistItem()
-          : ProductListItem(productList: productList, shoppingCart: shoppingCart),
+          ? const CommonEmptyListItem(
+              imagePath: 'assets/images/empty_page.png',
+              title: "등록된 상품이 없습니다.",
+              description: "+ 버튼을 눌러 첫 상품을 등록해보세요!",
+            )
+          : ProductListItem(
+              productList: productList,
+              shoppingCart: cartItems,
+              wishSet: wishSet,
+              onToggleWish: onToggleWish,
+            ),
     );
   }
 }
