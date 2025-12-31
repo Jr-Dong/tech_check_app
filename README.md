@@ -1,6 +1,7 @@
 # 📱 TechCheck (테크체크)
 <img width="255" height="37" alt="techcheck_logo" src="https://github.com/user-attachments/assets/1f731e25-1717-4a58-82a9-ea3cb24e2a57" />
 </br>
+
 **전문가가 검수하는 안심 IT 기기 중고거래 플랫폼**
 
  정보 비대칭으로 인한 중고 거래의 불안함을 '디지털 검수표'와 '전문가 검증 프로세스'로 해결하는 신뢰 기반 마켓플레이스입니다.
