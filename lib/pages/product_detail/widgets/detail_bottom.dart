@@ -101,7 +101,15 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
-                      widget.addToCart(widget.product);
+                      addToCart(
+                        ProductEntity(
+                          id: '1',
+                          name: 'name',
+                          description: 'description',
+                          price: 1,
+                          images: [],
+                        ),
+                      );
                     },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: AppColors.primary100,
