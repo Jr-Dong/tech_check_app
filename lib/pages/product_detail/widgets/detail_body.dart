@@ -5,7 +5,6 @@ import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_detail/widgets/carousel_slider_page.dart';
-import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
 class DetailBody extends StatelessWidget {
   final ProductEntity product;

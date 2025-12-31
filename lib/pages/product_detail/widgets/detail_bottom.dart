@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tech_check_app/core/app_colors.dart';
@@ -6,9 +7,13 @@ import 'package:tech_check_app/core/widgets/counter_control.dart';
 import 'package:tech_check_app/model/product_entity.dart';
 
 class DetailBottom extends StatefulWidget {
-  const DetailBottom({super.key, required this.product, required this.addToCart});
+  const DetailBottom({
+    super.key,
+    required this.product,
+    required this.addToCart,
+  });
   final ProductEntity product;
-   final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity) addToCart;
 
   @override
   State<DetailBottom> createState() => _DetailBottomState();
@@ -97,7 +102,7 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
-                      addToCart(
+                      widget.addToCart(
                         ProductEntity(
                           id: '1',
                           name: 'name',
@@ -119,8 +124,21 @@ class _DetailBottomState extends State<DetailBottom> {
                 Expanded(
                   flex: 2,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showCupertinoDialog(context: context, builder: context){
+                        return CupertinoAlertDialog(
+                          title: Text("제목"),
+                          content: Text("내용"),
+                        actions: [
+                          CupertinoDialogAction(isDefaultAction: true,child: Text('확인'),onPressed: (){Navigator.pop(context);
+                              },
+                            )
+                          ],
+                        );
+                      };
+                    },
                     child: Text('구매하기', style: AppTextStyles.s16w400),
+
                     //
                   ),
                 ),

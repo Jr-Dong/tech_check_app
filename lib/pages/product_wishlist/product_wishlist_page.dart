@@ -3,7 +3,6 @@ import 'package:tech_check_app/core/widgets/common_app_bar.dart';
 import 'package:tech_check_app/core/widgets/common_empty_view.dart';
 import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
-import 'package:tech_check_app/pages/product_list/widgets/product_list_view.dart';
 
 class ProductWishlistPage extends StatefulWidget {
   final List<CartItem> shoppingCart;
