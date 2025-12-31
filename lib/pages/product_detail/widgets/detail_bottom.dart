@@ -122,7 +122,7 @@ class _DetailBottomState extends State<DetailBottom> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            '장바구니에 ${widget.product.name}을(를) $count개가 담았습니다.',
+                            '장바구니에 ${widget.product.name}을(를) $count개 담았습니다.',
                           ),
                           duration: const Duration(seconds: 1),
                           behavior: SnackBarBehavior.floating,
