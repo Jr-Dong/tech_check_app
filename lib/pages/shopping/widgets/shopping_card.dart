@@ -60,7 +60,7 @@ class ShoppingCard extends StatelessWidget {
                       Row(
                         children: [
                           /// 오류 나서 임시로 값 넣어줌
-                          CounterControl(count: 0),
+                          // CounterControl(count: 0),
                           Spacer(),
                           Text(
                             '${cartItem.product.price}원',

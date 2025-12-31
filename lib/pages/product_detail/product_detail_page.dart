@@ -9,6 +9,7 @@ class DetailPage extends StatelessWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
+  final ProductEntity product;
   final void Function(ProductEntity) addToCart;
 
   const DetailPage({
@@ -16,6 +17,7 @@ class DetailPage extends StatelessWidget {
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
+    required this.product,
     required this.addToCart,
   });
 
@@ -29,11 +31,13 @@ class DetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          DetailBody(),
+          DetailBody(product: product),
           //
         ],
       ),
-      bottomSheet: DetailBottom(addToCart: addToCart),
+
+      bottomSheet: DetailBottom(addToCart: addToCart, product: product),
+
     );
   }
 }

@@ -44,6 +44,7 @@ class _ProductListItemState extends State<ProductListItem> {
               context,
               MaterialPageRoute(
                 builder: (context) => DetailPage(
+                  product: product,
                   addToCart: widget.addToCart,
                   shoppingCart: widget.shoppingCart,
                   wishSet: widget.wishSet,
