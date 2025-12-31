@@ -8,27 +8,21 @@ import 'package:tech_check_app/model/product_entity.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
-  final String name;
-  final int price;
-  final String imageUrl;
+
   final int index;
 
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
-  final bool isVerified;
 
   const ProductCard({
     super.key,
     required this.product,
-    required this.name,
-    required this.price,
-    required this.imageUrl,
+
     required this.index,
     required this.shoppingCart,
     required this.wishSet,
     required this.onToggleWish,
-    required this.isVerified,
   });
 
   @override
@@ -44,7 +38,7 @@ class ProductCard extends StatelessWidget {
           child: Stack(
             children: [
               Image.network(
-                imageUrl,
+                product.images[0],
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 150,
@@ -68,9 +62,9 @@ class ProductCard extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            Text(name, style: AppTextStyles.s18w500),
+            Text(product.name, style: AppTextStyles.s18w500),
             SizedBox(width: 4),
-            if (isVerified)
+            if (product.isVerified)
               Icon(
                 CupertinoIcons.checkmark_seal_fill,
                 color: AppColors.secondary500,
@@ -78,7 +72,7 @@ class ProductCard extends StatelessWidget {
               ),
           ],
         ),
-        price == 0
+        product.price == 0
             ? Text("무료", style: AppTextStyles.s18w600)
             : Row(
                 children: [
@@ -87,7 +81,7 @@ class ProductCard extends StatelessWidget {
                       locale: 'ko',
                       symbol: '',
                       decimalDigits: 0,
-                    ).format(price),
+                    ).format(product.price),
                     style: AppTextStyles.s18w600,
                   ),
                   Text("원", style: AppTextStyles.s18w600),

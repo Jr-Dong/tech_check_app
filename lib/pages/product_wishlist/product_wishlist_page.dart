@@ -48,14 +48,15 @@ class _ProductWishlistPageState extends State<ProductWishlistPage> {
               title: "찜 목록이 비어있어요",
               description: "마음에 드는 상품을 담아 보세요!",
             )
-          : ProductListItem(
-              shoppingCart: widget.shoppingCart,
-              productList: widget.wishSet.toList(),
-              wishSet: widget.wishSet,
-              onToggleWish: (product) {
-                _handleToggleWish(product);
-              },
-            ),
+          : SizedBox(),
+      // ProductListItem(
+      //     shoppingCart: widget.shoppingCart,
+      //     productList: widget.wishSet.toList(),
+      //     wishSet: widget.wishSet,
+      //     onToggleWish: (product) {
+      //       _handleToggleWish(product);
+      //     },
+      //   ),
     );
   }
 }
