@@ -25,22 +25,29 @@ class _ProductListPageState extends State<ProductListPage> {
     });
   }
 
-  void addToCart(ProductEntity product) {
+  // 카트 추가하는 함수
+  void addToCart(ProductEntity product, int quantity) {
     setState(() {
-      final index = cartItems.indexWhere(
-        (item) => item.product.id == product.id,
-      );
+      bool isAlreadyInCart = false;
 
-      if (index != -1) {
-        cartItems[index].quantity += 1;
-      } else {
-        cartItems.add(
-          CartItem(product: product, quantity: 1, isSelected: true),
-        );
+      // 1. 장바구니를 하나씩 확인합니다.
+      for (var item in cartItems) {
+        if (item.product.id == product.id) {
+          // 2. 똑같은 상품을 찾았다면 수량만 더해줍니다.
+          item.quantity += quantity;
+          isAlreadyInCart = true;
+          break;
+        }
+      }
+
+      // 3. 끝까지 확인했는데 없다면 새로 추가합니다.
+      if (isAlreadyInCart == false) {
+        cartItems.add(CartItem(product: product, quantity: quantity));
       }
     });
   }
 
+  // 찜하기 함수
   void onToggleWish(ProductEntity item) {
     setState(() {
       if (wishSet.contains(item)) {
@@ -54,7 +61,6 @@ class _ProductListPageState extends State<ProductListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 플로팅액션버튼
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

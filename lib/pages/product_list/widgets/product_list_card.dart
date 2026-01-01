@@ -62,6 +62,13 @@ class ProductCard extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
+            if (product.isVerified)
+              Icon(
+                CupertinoIcons.checkmark_seal_fill,
+                color: AppColors.secondary500,
+                size: 14,
+              ),
+            SizedBox(width: 4),
             Expanded(
               child: Text(
                 product.name,
@@ -69,13 +76,6 @@ class ProductCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            SizedBox(width: 4),
-            if (product.isVerified)
-              Icon(
-                CupertinoIcons.checkmark_seal_fill,
-                color: AppColors.secondary500,
-                size: 14,
-              ),
           ],
         ),
         product.price == 0

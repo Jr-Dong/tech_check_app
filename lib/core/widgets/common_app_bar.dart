@@ -13,7 +13,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;
   final void Function(ProductEntity) onToggleWish;
-  final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity, int) addToCart;
 
   const CommonAppBar({
     super.key,

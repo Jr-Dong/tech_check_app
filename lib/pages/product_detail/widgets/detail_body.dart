@@ -24,18 +24,27 @@ class DetailBody extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      product.name,
-                      style: AppTextStyles.s18w600.copyWith(
-                        color: AppColors.textPrimary,
+                    if (product.isVerified)
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.checkmark_seal_fill,
+                            color: AppColors.secondary500,
+                          ),
+                          SizedBox(width: 8),
+                        ],
+                      ),
+
+                    Expanded(
+                      child: Text(
+                        product.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.s18w600.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8),
-                    if (product.isVerified)
-                      Icon(
-                        CupertinoIcons.checkmark_seal_fill,
-                        color: AppColors.secondary500,
-                      ),
                   ],
                   //
                 ),

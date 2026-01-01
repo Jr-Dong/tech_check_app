@@ -9,7 +9,7 @@ class ProductListItem extends StatefulWidget {
   final Set<ProductEntity> wishSet;
   final List<ProductEntity> productList;
   final void Function(ProductEntity) onToggleWish;
-  final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity, int) addToCart;
 
   const ProductListItem({
     super.key,

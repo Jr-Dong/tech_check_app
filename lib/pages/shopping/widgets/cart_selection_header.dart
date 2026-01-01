@@ -6,11 +6,15 @@ class CartSelectionHeader extends StatelessWidget {
   final int selectedCount;
   final int totalCount;
   final bool isAllSelected;
+  final VoidCallback onToggleAll;
+  final VoidCallback onDeleteSelected;
   const CartSelectionHeader({
     super.key,
     required this.selectedCount,
     required this.totalCount,
     required this.isAllSelected,
+    required this.onToggleAll,
+    required this.onDeleteSelected,
   });
 
   @override
@@ -24,21 +28,40 @@ class CartSelectionHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                isAllSelected ? Icons.check_box : Icons.check_box_outline_blank,
-                color: AppColors.border,
-              ),
-              SizedBox(width: 9),
-              Text(
-                '전체 선택 ($selectedCount/$totalCount)',
-                style: AppTextStyles.s11w500.copyWith(color: AppColors.gray400),
+              GestureDetector(
+                onTap: onToggleAll,
+                child: Row(
+                  children: [
+                    Icon(
+                      isAllSelected
+                          ? Icons.check_box
+                          : Icons.check_box_outline_blank,
+                      // 삼항 연산자로 색상 변경
+                      color: isAllSelected
+                          ? AppColors.secondary500
+                          : AppColors.border,
+                    ),
+                    const SizedBox(width: 9),
+                    Text(
+                      '전체 선택 ($selectedCount/$totalCount)',
+                      style: AppTextStyles.s11w500.copyWith(
+                        color: AppColors.gray400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
           Spacer(),
-          Text(
-            '선택 삭제',
-            style: AppTextStyles.s11w500.copyWith(color: AppColors.textPrimary),
+          GestureDetector(
+            onTap: onDeleteSelected,
+            child: Text(
+              '선택 삭제',
+              style: AppTextStyles.s11w500.copyWith(
+                color: AppColors.textPrimary,
+              ),
+            ),
           ),
         ],
       ),

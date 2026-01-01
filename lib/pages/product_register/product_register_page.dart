@@ -66,6 +66,7 @@ class _ProductRegisterState extends State<ProductRegister> {
       const SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text("상품이 성공적으로 등록되었습니다!"),
+        duration: Duration(seconds: 1),
       ),
     );
   }

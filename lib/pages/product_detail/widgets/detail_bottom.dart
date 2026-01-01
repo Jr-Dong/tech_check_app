@@ -6,7 +6,6 @@ import 'package:tech_check_app/core/fonts.dart';
 import 'package:tech_check_app/core/widgets/counter_control.dart';
 import 'package:tech_check_app/model/cart_item.dart';
 import 'package:tech_check_app/model/product_entity.dart';
-import 'package:tech_check_app/pages/shopping/shopping_page.dart';
 
 class DetailBottom extends StatefulWidget {
   const DetailBottom({
@@ -18,7 +17,7 @@ class DetailBottom extends StatefulWidget {
     required this.wishSet,
   });
   final ProductEntity product;
-  final void Function(ProductEntity) addToCart;
+  final void Function(ProductEntity, int) addToCart;
   final List<CartItem> shoppingCart;
   final void Function(ProductEntity) onToggleWish;
   final Set<ProductEntity> wishSet;
@@ -119,14 +118,16 @@ class _DetailBottomState extends State<DetailBottom> {
                   flex: 1,
                   child: OutlinedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ShoppingPage(shoppingCart: widget.shoppingCart),
+                      widget.addToCart(widget.product, count);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '장바구니에 ${widget.product.name}을(를) $count개가 담았습니다.',
+                          ),
+                          duration: const Duration(seconds: 1),
+                          behavior: SnackBarBehavior.floating,
                         ),
                       );
-                      widget.addToCart(widget.product);
                     },
                     style: OutlinedButton.styleFrom(
                       backgroundColor: AppColors.primary100,
