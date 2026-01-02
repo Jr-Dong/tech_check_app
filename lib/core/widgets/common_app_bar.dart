@@ -5,6 +5,7 @@ import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_wishlist/product_wishlist_page.dart';
 import 'package:tech_check_app/pages/shopping/shopping_page.dart';
 
+// PreferredSizeWidget 대신 AppBar를 상속받아서 구현해보기
 /// 공통 AppBar 컴포넌트
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;

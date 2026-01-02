@@ -30,6 +30,7 @@ class DetailPage extends StatelessWidget {
         onToggleWish: onToggleWish,
         addToCart: addToCart,
       ),
+      // Column + Expanded 제거!
       body: Column(
         children: [
           DetailBody(product: product),

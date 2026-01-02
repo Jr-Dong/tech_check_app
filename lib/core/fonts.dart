@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_check_app/core/app_colors.dart';
 
 class AppTextStyles {
   static const String fontFamily = 'Pretendard';
@@ -57,4 +58,17 @@ class AppTextStyles {
     fontSize: 11,
     fontWeight: FontWeight.w500,
   );
+}
+
+
+
+// AppTextStyles.s18w500.copyWith(color: AppColors.gray400)
+// 를
+// AppTextStyles.s18w500.gray400
+// 처럼 사용가능
+// 가독성 향상 및 개발 편의성 향상
+extension TextStyleExt on TextStyle {
+  TextStyle get gray400 {
+    return copyWith(color: AppColors.gray400);
+  }
 }

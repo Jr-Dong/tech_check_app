@@ -4,6 +4,11 @@ import 'package:tech_check_app/model/product_entity.dart';
 import 'package:tech_check_app/pages/product_detail/product_detail_page.dart';
 import 'package:tech_check_app/pages/product_list/widgets/product_list_card.dart';
 
+// StatefulWidget일 필요 X => StatelessWidget으로 변경
+// State클래스에서 StatefulWidget 을 상속받는 클래스의 속성을 복사해서 변수로 사용할 경우
+// 부모위젯에서 setState하여 속성 변경하게 되면 상태가 엇갈림.
+// 이런 실수 사전에 방지하고자 Stateful이 필수가 아닌 상황에서는 StatelessWidget 사용!
+// 성능도 미세하게 더 좋음!(메모리 측면에서)
 class ProductListItem extends StatefulWidget {
   final List<CartItem> shoppingCart;
   final Set<ProductEntity> wishSet;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_check_app/core/app_colors.dart';
 import 'package:tech_check_app/core/fonts.dart';
 
+// 사용되지 않는 변수
 final secondaryButtonStyle = ElevatedButton.styleFrom(
   backgroundColor: AppColors.secondary500,
   foregroundColor: AppColors.white,

@@ -21,6 +21,7 @@ class ProductImagePickerSection extends StatelessWidget {
       children: [
         SizedBox(
           height: 80,
+          // LitView.seperated 리팩토링 추천!
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.none,

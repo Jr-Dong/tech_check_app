@@ -19,6 +19,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
+// StatelessWidget 으로 변경
+// 상태를 바꾸기 위한 여러 코드들이 존재
+// 조금 더 무거움
+// MyHomePage 불필요해보임.
+// MaterialApp의 Home 속성에 ProductListPage 넣기!
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
